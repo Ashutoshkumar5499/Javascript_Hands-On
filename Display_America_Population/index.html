@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is America</title>
+
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+
+          background-color: aqua;
+
+         padding: 15px;
+        }
+
+        table {
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 75px;
+
+           }
+
+        h1{
+           text-align: center;
+          } 
+        </style>
+</head>
+<body>
+
+    <h1> This Is America Population fetched from API </h1>
+
+    <div id="container">
+
+        
+        
+
+
+
+
+
+    </div>
+
+    <script>
+
+       
+
+        const request =new  XMLHttpRequest();  
+
+       
+        request.open('GET',"https://datausa.io/api/data?drilldowns=Nation&measures=Population");
+
+        request.send();
+
+    
+
+        request.onload = function()
+        {
+            const container = document.querySelector('#container');
+              const data = JSON.parse(this.responseText);
+
+              console.log(data);
+
+              console.log(request.statusText)
+
+
+
+  let tb =` <table> <tr><th>Country</th><th>Year</th><th>Population</th></tr>  ` ;
+
+        
+        for(var i=0;i<8;i++)
+        {
+            tb+=  ` <tr><td>  ${data.data[i].Nation}  </td><td>  ${data.data[i].Year}  </td><td>  ${data.data[i].Population}  </td> </tr> ` ;
+        }
+
+        tb+=`</table>`
+
+
+     container.innerHTML=tb;
+
+ }
+
+   //For Practice Purpose
+
+
+             // let [abc]=data.records;
+
+         //  console.log(this.responseText);
+
+     // console.log(data);
+
+      // let pp= "<h1>"+data.data[0].Nation+"</h1>";
+
+     // container.innerHTML = pp;
+
+    //  let tb ="<table>";
+
+
+    //   for(var i=-1;i<8;i++)
+    //  {
+    //     if(i==-1)
+    //     {
+    //         tb+=" <tr><th>Country</th><th>Year</th><th>Population</th></tr> "
+            
+    //     }
+
+    //     else{
+
+    //         tb+="<tr>"+"<td> " +  data.data[i].Nation + "  </td>  " + "  <td>  " +  data.data[i].Year + " </td> " + " <td> "+  data.data[i].Population +"</td>" +"</tr>";
+    //     }
+    //  }
+
+    //  tb+="</table>";
+
+
+
+    </script>
+
+
+
+    
+    
+</body>
+</html>
